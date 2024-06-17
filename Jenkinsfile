@@ -1,20 +1,34 @@
 pipeline {
     agent any
+
+    // environment {
+    //     AWS_ACCESS_KEY_ID = credentials('your-aws-access-key-id')
+    //     AWS_SECRET_ACCESS_KEY = credentials('your-aws-secret-access-key')
+    // }
+
     stages {
-        stage("Stage 1"){
+        // stage('Checkout') {
+        //     steps {
+        //         git 'https://github.com/Raul-CV/desafio-1.git'  // Cambia esto a tu repositorio
+        //     }
+        // }
+
+        stage('Terraform Init') {
             steps {
-                echo "This is stage 1"
+                sh 'terraform init'
             }
         }
-        stage("Stage 2"){
+
+        stage('Terraform Apply') {
             steps {
-                echo "This is stage 2"
+                sh 'terraform apply -auto-approve'
             }
         }
-        stage("Stage 3"){
-            steps {
-                echo "This is stage 3"
-            }
+    }
+
+    post {
+        always {
+            cleanWs()
         }
     }
 }
