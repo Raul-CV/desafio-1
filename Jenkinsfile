@@ -7,15 +7,16 @@ pipeline {
     }
 
     stages {
-        // stage('Checkout') {
-        //     steps {
-        //         git 'https://github.com/Raul-CV/desafio-1.git'  // Cambia esto a tu repositorio
-        //     }
-        // }
 
         stage('Terraform Inicia') {
             steps {
                 sh 'terraform init'
+            }
+        }
+
+        stage('Terraform Plan') {
+            steps {
+                sh 'terraform Plan'
             }
         }
 
