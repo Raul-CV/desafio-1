@@ -8,7 +8,7 @@ resource "aws_instance" "servidor-nginx" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "desafio1.3"
+    Name = "desafio1.5"
   }
 
   user_data = <<-EOF
